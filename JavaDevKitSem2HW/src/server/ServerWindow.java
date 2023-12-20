@@ -33,6 +33,16 @@ public class ServerWindow extends JFrame implements ViewServer{
         log.append(text + "\n");
     }
 
+    @Override
+    public void startedServer() {
+        server.serverStart();
+    }
+
+    @Override
+    public void stoppedServer() {
+        server.serverStop();
+    }
+
     private void createPanel() {
         log = new JTextArea();
         add(log);
@@ -46,14 +56,14 @@ public class ServerWindow extends JFrame implements ViewServer{
         btnStart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                server.serverStart();
+                startedServer();
             }
         });
 
         btnStop.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                server.serverStop();
+                stoppedServer();
             }
         });
 
@@ -65,4 +75,5 @@ public class ServerWindow extends JFrame implements ViewServer{
     public Server getConnection() {
         return this.server;
     }
+
 }
